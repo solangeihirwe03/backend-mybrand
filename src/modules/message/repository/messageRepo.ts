@@ -1,4 +1,4 @@
-import { Messages } from "database/models/message";
+import { Messages } from "../../../database/models/message";
 
 const createMessages = async(body: any)=>{
     return await Messages.create(body);

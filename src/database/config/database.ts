@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const MONGO_URL :any = process.env.MONGO_URL
+const uri: any = process.env.MONGO_URL
 
-mongoose.connect(MONGO_URL)
+
+mongoose.connect(uri)
 .then(()=>{
     console.log("database connected successfuly");
 
