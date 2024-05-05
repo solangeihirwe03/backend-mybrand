@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import router from './routes/messageRoutes';
+import router from './routes/allroutes';
 import './database/config/database'
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(cors(" * " as any));
 
 dotenv.config();
 
-app.use("/", router);
+app.use("/api", router);
 
 const PORT = 6000;
 

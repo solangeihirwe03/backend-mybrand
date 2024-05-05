@@ -2,10 +2,10 @@
   "name": "backend-mybrand",
   "version": "1.0.0",
   "description": "backend for mybrand",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require ts-node/register 'src/modules/**/*.spec.ts'",
+    "start": "nodemon"
   },
   "author": "solange",
   "license": "MIT",
@@ -22,9 +22,13 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "mocha": "^10.4.0",
     "mongoose": "^8.3.2",
     "nodemon": "^3.1.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6"
   }
 }
