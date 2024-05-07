@@ -13,8 +13,8 @@ export const getBlogById = async(id:string)=>{
     return await BlogModel.findOne({_id:id});
 }
 
-export const updateBlog = async(id:string)=>{
-    return await BlogModel.findByIdAndUpdate({_id:id});
+export const updateBlog = async(id:string, body: any)=>{
+    return await BlogModel.findByIdAndUpdate({_id:id}, body, {new:true});
 }
 
 export const deleteBlog = async(id:string)=>{

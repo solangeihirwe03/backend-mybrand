@@ -5,7 +5,7 @@ import { createMessage, viewMessages, deleteMessage } from '../modules/message/c
 const router = express.Router();
 
 router.post("/createMessage", createMessage);
-router.get("/viewMessage", authentication,  viewMessages);
+router.get("/viewMessage",authentication,  viewMessages);
 router.delete("/deleteMessage/:id", authentication,  deleteMessage)
 
 export default router;
