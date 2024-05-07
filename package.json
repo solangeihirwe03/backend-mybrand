@@ -4,31 +4,77 @@
   "description": "backend for mybrand",
   "main": "index.ts",
   "scripts": {
-    "test": "mocha --require ts-node/register 'src/modules/**/*.spec.ts'",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls",
+    "test": "mocha --require ts-node/register 'src/modules/**/*.spec.ts' --timeout 300000 --exit",
+    "coverage": "nyc mocha --require ts-node/register 'src/modules/**/*.spec.ts' --timeout 300000 --exit",
     "start": "nodemon"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "check-coverage": true,
+    "all": true,
+    "include": [
+      "src/**/!(*.test|spec.*).[tj]s?(x)"
+    ],
+    "exclude": [
+      "src/**/*.spec.ts",
+      "src/database/**/*.*",
+      "src/utils/**/*.*"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "lines": 40
   },
   "author": "solange",
   "license": "MIT",
   "dependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/mongoose": "^5.11.97",
-    "@types/swagger-jsdoc": "^6.0.4",
-    "@types/swagger-ui-express": "^4.1.6",
+    "@types/multer": "^1.4.11",
+    "@types/nodemailer": "^6.4.14",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^2.2.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mocha": "^10.4.0",
-    "mongoose": "^8.3.2",
-    "nodemon": "^3.1.0",
+    "mongoose": "^8.3.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6"
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@types/bcrypt": "^5.0.2",
+    "@types/body-parser": "^1.19.5",
+    "@types/chai": "^4.3.14",
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/mocha": "^10.0.6",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.12.7",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "chai": "^4.3.4",
+    "chai-http": "^4.4.0",
+    "esm": "^3.2.25",
+    "mocha": "^10.4.0",
+    "nodemon": "^3.1.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.4"
   }
 }

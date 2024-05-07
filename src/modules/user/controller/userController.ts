@@ -5,8 +5,8 @@ import { generateToken } from '../../../helpers/index';
 
 export const signUp  = async(req:express.Request, res:express.Response)=>{
     try{
-        const{userName, email, password} = req.body;
-        if(!userName || !email || !password){
+        const{username, email, password} = req.body;
+        if(!username || !email || !password){
             return res.status(400).json({
                 status: 'fail',
                 message: "please insert your information"
@@ -22,7 +22,7 @@ export const signUp  = async(req:express.Request, res:express.Response)=>{
 
         const hashedpassword = await encryptPassword(password);
         const user = await createUser({
-            userName,
+            username,
             email,
             password: hashedpassword,
         });
