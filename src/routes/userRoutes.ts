@@ -43,9 +43,9 @@ const router = express.Router();
  *               password:
  *                 type: string
  *           example:
- *             username: saddock
- *             email: saddock@gmail.com
- *             password: Saddock_123
+ *             username: solange
+ *             email: solange@gmail.com
+ *             password: solange123
  *     responses:
  *       200:
  *         description: Success
@@ -97,8 +97,8 @@ router.post('/signUp', signUp);
  *               password:
  *                 type: string
  *           example:
- *             email: "saddock@gmail.com"
- *             password: "Saddock_123"
+ *             email: "ihirwe@gmail.com"
+ *             password: "solange123"
  *     responses:
  *       200:
  *         description: Success
