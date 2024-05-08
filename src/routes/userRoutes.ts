@@ -79,7 +79,7 @@ router.post('/signUp', signUp);
 
 /**
  * @swagger
- * /users/login:
+ * /api/users/login:
  *   post:
  *     summary: Login a user
  *     tags:
