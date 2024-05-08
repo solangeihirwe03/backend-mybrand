@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/modules/user/repository/userRepo.ts</title>
+    <title>Code coverage report for src/modules/blogs/repository/blogRepo.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/modules/user/repository</a> userRepo.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/modules/blogs/repository</a> blogRepo.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">52.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/25</span>
+                <span class='fraction'>11/21</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/13</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
@@ -84,11 +84,7 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -103,41 +99,33 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import UserModel from "../../../database/models/user"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BlogModel from "../../../database/models/blogs";
 &nbsp;
 &nbsp;
-export const createUser = <span class="fstat-no" title="function not covered" >async(b</span>ody:any)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    return await UserModel.create(body);</span>
+export const createBlog = <span class="fstat-no" title="function not covered" >async(b</span>ody:any)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return await BlogModel.create(body);</span>
 }
 &nbsp;
-export const getAllUser = <span class="fstat-no" title="function not covered" >async()=</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    return await UserModel.find();</span>
+export const getAllBlog = <span class="fstat-no" title="function not covered" >async()=</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return await BlogModel.find();</span>
 }
 &nbsp;
-export const getUserById = <span class="fstat-no" title="function not covered" >async(i</span>d:string)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    return await UserModel.findOne({_id: id});</span>
+export const getBlogById = <span class="fstat-no" title="function not covered" >async(i</span>d:string)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return await BlogModel.findOne({_id:id});</span>
 }
 &nbsp;
-export const getUserByEmail = async(email:string)=&gt;{
-    return await UserModel.findOne({email});
+export const updateBlog = <span class="fstat-no" title="function not covered" >async(i</span>d:string, body: any)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return await BlogModel.findByIdAndUpdate({_id:id}, body, {new:true});</span>
 }
 &nbsp;
-export const updateUser = <span class="fstat-no" title="function not covered" >async(i</span>d: string)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    return await UserModel.findByIdAndUpdate({_id:id});</span>
-}
-&nbsp;
-export const deleteUser = <span class="fstat-no" title="function not covered" >async(i</span>d:string)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    return await UserModel.findByIdAndDelete({_id:id});</span>
+export const deleteBlog = <span class="fstat-no" title="function not covered" >async(i</span>d:string)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return await BlogModel.findByIdAndDelete({_id:id});</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +133,7 @@ export const deleteUser = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-07T15:19:33.787Z
+                at 2024-05-07T15:19:33.727Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

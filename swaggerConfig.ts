@@ -1,22 +1,23 @@
- import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerJsdoc from 'swagger-jsdoc';
  import swaggerUi from 'swagger-ui-express';
 
  const options = {
-    definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'MyBrand Backend API',
-      version: '1.0.0',
-      description: 'Documentation for MyBrand Backend API',
-    },
-    servers: [
+   definition: {
+     openapi: "3.0.0",
+     info: {
+       title: "MyBrand Backend API",
+       version: "1.0.0",
+       description: "Documentation for MyBrand Backend API",
+     },
+     servers: [
       {
-        //url: 'https://my-brand-saddock-backend.onrender.com/api',
-      },
-    ],
-  },
-  apis: ['./src/routes/*.ts'],
-};
+       url: "https://backend-mybrand-solange.onrender.com",
+       description: "live deployed server"
+        },
+     ],
+   },
+   apis: ["./src/routes/*.ts"],
+ };
 
 const specs = swaggerJsdoc(options);
 
