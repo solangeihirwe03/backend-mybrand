@@ -43,8 +43,8 @@ const router = express.Router();
  *               message:
  *                 type: string
  *           example:
- *             name: "saddock"
- *             email: "saddock@gmail.com"
+ *             name: "solange"
+ *             email: "solange@gmail.com"
  *             message: "Hello there!"
  *     responses:
  *       200:
