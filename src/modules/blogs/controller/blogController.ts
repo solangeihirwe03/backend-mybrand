@@ -1,14 +1,11 @@
 import express from 'express';
 import { createBlog, getAllBlog, getBlogById, deleteBlog, updateBlog } from "../repository/blogRepo";
-
-
 import { cloudinary } from "../../../utils/cloudinary";
 const asyncHandler = require("express-async-handler");
 
 const uploadImages = async (
   fileToUpload: any
 ): Promise<{ public_id: string; secure_url: string }> => {
-  try {
     if (!fileToUpload.path) {
       throw new Error("No file uploaded");
     }
@@ -17,10 +14,6 @@ const uploadImages = async (
       public_id: result.public_id,
       secure_url: result.secure_url,
     };
-  } catch (error) {
-    console.log(error);
-    throw new Error("Image upload failed");
-  }
 };
 //create blogs
 export const createBlogs = asyncHandler(
@@ -156,7 +149,7 @@ export const updatedBlog = asyncHandler(
       const updatedBlog = await updateBlog(blogId, body);
       if (!updatedBlog) {
         res.status(404).json({
-          message: `Blog with ${blogId}} is not found.`,
+          message: `Blog with ${blogId} is not found.`,
         });
       }
       res.status(200).json({

@@ -8,20 +8,20 @@ const router = () => chai.request(app);
 import fs from "fs";
 import path from "path";
 
-const imageLoc = path.join(__dirname, "../../../../cube.png");
+const imageLoc = path.join(__dirname, "../../../cube.png");
 const imageBuffer = fs.readFileSync(imageLoc);
 
 let blogId: any = "";
 let token: any = "";
 
 describe("MyBrand backend blogs test cases", () => {
-  // Test for login
+   // Test for login 
   it("Should be able to log in an existing user", (done) => {
     router()
       .post("/api/users/login")
       .send({
-        email: "solange@gmail.com",
-        password: "solange_1000",
+        email: "ihirwe@gmail.com",
+        password: "solange000"
       })
       .end((error, response: any) => {
         expect(response).to.have.status(200);
@@ -30,7 +30,6 @@ describe("MyBrand backend blogs test cases", () => {
         token = response._body.data.token;
         done(error);
       });
-  });
 
   // Test for creating Blog
   it("Should be able to create blog", (done) => {
@@ -40,16 +39,24 @@ describe("MyBrand backend blogs test cases", () => {
       .field("title", "title test")
       .field("description", "description test")
       .field("content", "content test")
-      .attach("image", imageBuffer, "tech33.jpeg")
+      .attach("image", imageBuffer, "cube.png")
       .end((error, response: any) => {
+        expect(error).to.be.null;
         expect(response).to.have.status(200);
         expect(response.body).to.be.an("object");
+        expect(response.body).to.have.property("blogDetail");
+        expect(response.body.blogDetail).to.have.property("title");
+        expect(response.body.blogDetail).to.have.property("description");
+        expect(response.body.blogDetail).to.have.property("content");
+        expect(response.body.blogDetail).to.have.property("image");
+        expect(response.body.blogDetail.image).to.have.property("public_id");
+        expect(response.body.blogDetail.image).to.have.property('url')
         blogId = response._body.blogDetail._id;
         done(error);
       });
   });
 
-  it("Should be able to give an error", (done) => {
+  it("Should be handle able to give an error", (done) => {
     router()
       .post("/api/blogs/createBlogs")
       .set("Authorization", `Bearer ${token}`)
@@ -144,4 +151,5 @@ describe("MyBrand backend blogs test cases", () => {
         done(error);
       });
   });
-});
+})
+})
