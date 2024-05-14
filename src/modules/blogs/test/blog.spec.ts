@@ -15,22 +15,22 @@ let blogId: any = "";
 let token: any = "";
 
 describe("MyBrand backend blogs test cases", () => {
-   // Test for login 
+  // Test for login
   it("Should be able to log in an existing user", (done) => {
     router()
       .post("/api/users/login")
       .send({
         email: "ihirwe@gmail.com",
-        password: "solange000"
+        password: "solange123",
       })
       .end((error, response: any) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an("object");
         expect(response.body).to.have.property("data");
-        token = response._body.data.token;
+        token = response.body.data.token;
         done(error);
       });
-
+  });
   // Test for creating Blog
   it("Should be able to create blog", (done) => {
     router()
@@ -50,8 +50,8 @@ describe("MyBrand backend blogs test cases", () => {
         expect(response.body.blogDetail).to.have.property("content");
         expect(response.body.blogDetail).to.have.property("image");
         expect(response.body.blogDetail.image).to.have.property("public_id");
-        expect(response.body.blogDetail.image).to.have.property('url')
-        blogId = response._body.blogDetail._id;
+        expect(response.body.blogDetail.image).to.have.property("url");
+        blogId = response.body.blogDetail._id;
         done(error);
       });
   });
@@ -106,6 +106,35 @@ describe("MyBrand backend blogs test cases", () => {
         done(error);
       });
   });
+  
+  it("Should not be able to update blog with invalid id", (done) => {
+    router()
+      .put(`/api/blogs/updateBlog/66363abb8d33f2cf6d4651e9`)
+      .set("Authorization", `Bearer ${token}`)
+      .field("title", "title test")
+      .field("description", "description test")
+      .field("content", "content test")
+      .attach("image", imageBuffer, "tech33.jpeg")
+      .end((error, response: any) => {
+        expect(response).to.have.status(404);
+        expect(response.body).to.be.an("object");
+        done(error);
+      });
+  });
+
+  it("Should not be able to update blog", (done) => {
+    router()
+      .put(`/api/blogs/updateBlog/${blogId}`)
+      .set("Authorization", `Bearer ${token}`)
+      .field("title", "title test")
+      .field("description", "description test")
+      .field("content", "content test")
+      .end((error, response: any) => {
+        expect(response).to.have.status(404);
+        expect(response.body).to.be.an("object");
+        done(error);
+      });
+  });
 
   // Test for deleting a blogs
   it("Should be able to delete a blog by ID", (done) => {
@@ -151,5 +180,4 @@ describe("MyBrand backend blogs test cases", () => {
         done(error);
       });
   });
-})
-})
+});

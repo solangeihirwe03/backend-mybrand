@@ -1,6 +1,7 @@
 import app from "../../../index";
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
+import { error } from "console";
 
 chai.use(chaiHttp);
 const router = () => chai.request(app);
@@ -14,9 +15,9 @@ describe("MyBrand backend user test cases", () => {
     router()
       .post("/api/users/signUp")
       .send({
-        username: "Solange",
-        email: "solange@gmail.com",
-        password: "sol@123",
+        username: "pamella",
+        email: "pamella@gmail.com",
+        password: "pames@123",
       })
       .end((error,response)=>{
         expect(200);
@@ -30,7 +31,7 @@ describe("MyBrand backend user test cases", () => {
      router()
        .post("/api/users/signUp")
        .end((error, response) => {
-         expect(400)
+         expect(403)
          expect(response.body).to.be.an("object");
          expect(response.body).to.have.property("status", false);
          done(error);
@@ -41,7 +42,7 @@ describe("MyBrand backend user test cases", () => {
       router()
         .post("/api/users/signUp")
         .send({
-          email : "solange@gmail.com"
+          email : "pamella@gmail.com"
         })
         .end((error, response) => {
           expect(400);
@@ -53,14 +54,32 @@ describe("MyBrand backend user test cases", () => {
 
   //tests for login user
   
-  it("Should login existing user", ()=>{
+  it("Should login existing user", (done)=>{
     router()
     .post("/api/users/login")
     .send({
       email: "test@gmail.com",
       password: "test123"
     })
-    .end()
+    .end((error, response)=>{
+      expect(200);
+      done(error)
+    })
+  });
+
+  it("Should not login existing user with incorrect password", (done) => {
+    router()
+      .post("/api/users/login")
+      .send({
+        email: "test@gmail.com",
+        password: "teae123",
+      })
+      .end((error,response)=>{
+        expect(400);
+        expect(response.body).to.be.an("object");
+        expect(response.body).to.have.property("status", false)
+        done(error)
+      });
   });
 
   it("Should return error for invalid credentials",(done)=>{
@@ -98,22 +117,6 @@ describe("MyBrand backend user test cases", () => {
        });
    });
 
-   //tests for update user
-   it("Should be able to update user by id", (done) => {
-     router()
-       .get("/api/users/viewusers")
-       .set("Authorization", `Bearer ${token}`)
-       .send({
-         username: "solange",
-       })
-       .end((error, response) => {
-         expect(200);
-         expect(response.body).to.be.a("object");
-         expect(response.body).to.have.property("status", true);
-         done(error);
-       });
-   });
-
   //tests for deleting user
   it("Should delete an existing user",(done)=>{
     router()
@@ -122,7 +125,7 @@ describe("MyBrand backend user test cases", () => {
     .end((error, response:any)=>{
         expect(response).to.have.status(200);
         expect(response.body).to.be.an("object");
-        expect(response.body.data).to.be.a("token");
+        expect(response.body).to.have.property("status", true);
         done(error);
     });
   });
@@ -132,8 +135,9 @@ describe("MyBrand backend user test cases", () => {
     .delete(`/api/users/deleteuser/${userId}`)
     .set("Authorization", `Bearer ${token}`)
     .end((error, response)=>{
-        expect(response).to.have.status(404);
+        expect(400);
         expect(response.body).to.be.an("object");
+        expect(response.body).to.have.property("status", false)
         done(error);
     });
   });

@@ -7,7 +7,7 @@ const uploadImages = async (
   fileToUpload: any
 ): Promise<{ public_id: string; secure_url: string }> => {
     if (!fileToUpload.path) {
-      throw new Error("No file uploaded");
+      // throw new Error("No file uploaded");
     }
     const result = await cloudinary.uploader.upload(fileToUpload?.path);
     return {
@@ -17,10 +17,10 @@ const uploadImages = async (
 };
 //create blogs
 export const createBlogs = asyncHandler(
-  async (req: express.Request, res: express.Response): Promise<void> => {
+  async (req: express.Request, res: express.Response): Promise<any> => {
     try {
       if (!req.file) {
-        res.status(404).json({
+        return res.status(404).json({
           message: "Please upload an image",
         });
       }

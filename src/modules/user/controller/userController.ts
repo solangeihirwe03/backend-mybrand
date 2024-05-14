@@ -30,7 +30,8 @@ export const signUp  = async(req:express.Request, res:express.Response)=>{
             status: true,
             data: user
         });
-    }catch(error: any){
+    }
+    catch(error: any){
         res.status(500).json({
             message: "internal error server",
             error: error.message
@@ -99,12 +100,13 @@ export const deleteuser = async(req:express.Request, res:express.Response)=>{
         const existingUser  = await getUserById(userId);
         if(!existingUser){
             return res.status(400).json({
+                status: false,
                 message:"user not found"
             });
         }
         const deletedUser = await deleteUser(userId);
         return res.status(200).json({
-            message:"User is deleted successfully",
+            status: true,
             data: deletedUser
         });
 
