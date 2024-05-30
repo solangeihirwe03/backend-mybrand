@@ -7,7 +7,7 @@ const uploadImages = async (
   fileToUpload: any
 ): Promise<{ public_id: string; secure_url: string }> => {
     if (!fileToUpload.path) {
-      // throw new Error("No file uploaded");
+      throw new Error("No file uploaded");
     }
     const result = await cloudinary.uploader.upload(fileToUpload?.path);
     return {
@@ -15,7 +15,7 @@ const uploadImages = async (
       secure_url: result.secure_url,
     };
 };
-//create blogs
+
 export const createBlogs = asyncHandler(
   async (req: express.Request, res: express.Response): Promise<any> => {
     try {
@@ -25,7 +25,6 @@ export const createBlogs = asyncHandler(
         });
       }
       const result = await uploadImages(req.file);
-      //console.log(result)
       const blogData = {
         title: req.body.title,
         description: req.body.description,
@@ -35,7 +34,6 @@ export const createBlogs = asyncHandler(
           url: result?.secure_url,
         },
       };
-      //console.log(blogData)
       const blogs = await createBlog(blogData);
       res
         .status(200)
@@ -48,7 +46,6 @@ export const createBlogs = asyncHandler(
   }
 );
 
-//get all blogs
 export const viewBlogs = async (
   req: express.Request,
   res: express.Response
@@ -97,7 +94,6 @@ export const viewBlogById = async (
   }
 };
 
-//delete blog by id
 export const deletedBlog = async (
   req: express.Request,
   res: express.Response
@@ -135,7 +131,6 @@ export const updatedBlog = asyncHandler(
         return;
       }
       const result = await uploadImages(req.file);
-      //console.log(result);
       const body = {
         title: req.body.title,
         description: req.body.description,

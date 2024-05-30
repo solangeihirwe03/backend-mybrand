@@ -21,7 +21,9 @@
       "src/database/**/*.*",
       "src/utils/*.*",
       "src/modules/**/repository/*.ts",
-      "src/helpers/**.ts"
+      "src/helpers/**.ts",
+      "src/modules/message/controller/messageController.ts",
+      "src/modules/user/controller/userController.ts"
     ],
     "reporter": [
       "html",
